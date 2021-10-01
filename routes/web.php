@@ -23,10 +23,10 @@ Route::middleware([])->group(function () {
 });
 Route::group(['prefix'=>'admin','namespace'=>'Admin'],function (){
    Route::get('new',function (){
-       dd(12345);
+       echo url()->previous();
    });
 });
-Route::get('/home', function () {
+Route::get('/', function () {
     return response('Hello World', 200)
         ->header('Content-Type', 'text/plain');
 });
