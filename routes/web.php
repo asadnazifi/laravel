@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\Admincontroller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,21 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get(
-    'login',
-    [\App\Http\Controllers\Admin\AuthController::class, 'login']
-)->name('login');
-Route::middleware([])->group(function () {
-    Route::get('/',[\App\Http\Controllers\Admin\UserController::class],'login');
 
-
-});
 Route::group(['prefix'=>'admin','namespace'=>'Admin'],function (){
-   Route::get('new',function (){
-       echo url()->previous();
-   });
+    Route::get('/',[Admincontroller::class,'index'])->name('admin.AdminController');
+    //users grope
+    Route::get('UserList',[Admincontroller::class,'UserList'])->name('admin.UserList');
 });
-Route::get('/', function () {
-    return response('Hello World', 200)
-        ->header('Content-Type', 'text/plain');
-});
+
+
+
+
